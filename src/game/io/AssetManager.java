@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
-import game.Main;
-import game.entity.Player;
 
 public class AssetManager {
 	
@@ -17,7 +15,7 @@ public class AssetManager {
 
 		try {
 
-			BufferedImage image = ImageIO.read(Main.class.getResourceAsStream(path + ".png"));
+			BufferedImage image = ImageIO.read(AssetManager.class.getResourceAsStream(path + ".png"));
 
 			int col = 0;
 			int row = 0;
@@ -56,7 +54,7 @@ public class AssetManager {
 
 		try {
 
-			image = ImageIO.read(Main.class.getResourceAsStream(path + ".png"));
+			image = ImageIO.read(AssetManager.class.getResourceAsStream(path + ".png"));
 
 		} catch (IOException e) {
 			// TODO: handle exception

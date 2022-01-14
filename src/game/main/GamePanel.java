@@ -132,15 +132,9 @@ public class GamePanel extends JPanel implements Runnable {
 
 		g2.setColor(Color.WHITE);
 		g2.setColor(Color.DARK_GRAY);
-		// g2.drawRect(player.solidArea.x,player.solidArea.y,player.solidArea.width,player.solidArea.height);
+		
 		ui.draw(g2);
-		player.draw(g2);
-		for (int i = 0; i < obj.size(); i++) {
-			if (obj.get(i) != null) {
-				obj.get(i).draw(g2);
-			}
-
-		}
+		
 
 		g2.dispose();
 

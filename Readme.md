@@ -1,7 +1,6 @@
-Project นี้ ไม่ support export เป็น .jar
-เพราะว่า
-	-ไม่ได้ตั้ง framerate 
-	-asset เป็นไฟล์ขนาดใหญ่
+#RIDGEBACK
 
-create by 
-	-worawit
+Ridgeback is java game main character is [Thai Ridgeback](https://en.wikipedia.org/wiki/Thai_Ridgeback).
+ 
+## TARGET GAME 
+collect the falling Rubies.
