@@ -3,14 +3,11 @@ package game.entity;
 import game.data.GameState;
 import game.io.AssetManager;
 import game.io.KeyHandler;
-import game.io.Sound;
 import game.main.GamePanel;
-import game.util.collectEn;
 
 public class Player extends Entity {
 
 	KeyHandler keyH;
-	collectEn enhp;
 
 	public Player(GamePanel gp, KeyHandler keyH) {
 		super(gp);
@@ -24,9 +21,9 @@ public class Player extends Entity {
 	public void setDefaultValues() {
 
 		x = 100;
-		y = gp.tileSize * (gp.maxScreenRow - 1);
-		width = gp.tileSize;
-		height = gp.tileSize;
+		y = GamePanel.tileSize * (GamePanel.maxScreenRow - 1);
+		width = GamePanel.tileSize;
+		height = GamePanel.tileSize;
 
 		speed = 4;
 
@@ -57,7 +54,7 @@ public class Player extends Entity {
 				}
 			} else if (keyH.rightPressed == true) {
 				direction = "right";
-				if (x < (gp.screenWidth - (gp.tileSize))) {
+				if (x < (GamePanel.screenWidth - (GamePanel.tileSize))) {
 					x += speed;
 				}
 			}
@@ -76,16 +73,18 @@ public class Player extends Entity {
 
 		if (life <= 0) {
 			gp.gameState = GameState.OVER;
+			gp.stopBackgroundMusic();
+			gp.playSoundEffect(4);
 		}
 
 		int objIndex = gp.cChecker.checkObject(this, true);
-		pickUpObject(objIndex);
+		HitObject(objIndex);
 
 		// dumb();
 
 	}
 
-	public void pickUpObject(int i) {
+	public void HitObject(int i) {
 
 		if (i != 999) {
 			if (gp.obj.get(i).getClass().getSimpleName().equals("Ruby")) {
@@ -93,7 +92,12 @@ public class Player extends Entity {
 				gp.score++;
 				gp.obj.remove(i);
 			} else if (gp.obj.get(i).getClass().getSimpleName().equals("Heart")) {
-				life++;
+				if (life < 3) {
+					gp.obj.get(i).soundEffect();
+					life++;
+				}
+				gp.obj.remove(i);
+			} else if (gp.obj.get(i).y > GamePanel.screenHeight) {
 				gp.obj.remove(i);
 			}
 

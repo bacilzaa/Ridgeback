@@ -6,19 +6,10 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener{
 	
-	public boolean leftPressed, rightPressed;
-	
-	/*Player p;
-	GameScene gs;
-	JavaGame js;
-	collectEn ce;
-	ControllE cone;
-	
-	public KeyHandler(Player p) {
-		this.p = p;
-	}*/
+	public boolean leftPressed, rightPressed , spacePressed;
 	
 	public KeyHandler() {
+		
 	}
 
 	@Override
@@ -26,23 +17,16 @@ public class KeyHandler implements KeyListener{
 		
 		int code = e.getKeyCode();
 		
-		/*if(code == KeyEvent.VK_SPACE){
-			if(gs.end > 1) {
-				cone.count = 0;
-				gs.end-=1;
-				p.setScore(0);
-				ce.hpcount-=1;
-				cone.end-=1;
-				cone.GO-=1;
-			}
-		}*/
-		
 		if(code == KeyEvent.VK_RIGHT) {
 			rightPressed = true;
 		}
 		if(code == KeyEvent.VK_LEFT) {
 			leftPressed = true;
 		}
+		if(code == KeyEvent.VK_SPACE) {
+			spacePressed = true;
+		}
+		
 		
 	}
 
@@ -57,6 +41,10 @@ public class KeyHandler implements KeyListener{
 		if(code == KeyEvent.VK_LEFT) {
 			leftPressed = false;
 		}
+		if(code == KeyEvent.VK_SPACE) {
+			spacePressed = false;
+		}
+		
 	}
 
 	@Override

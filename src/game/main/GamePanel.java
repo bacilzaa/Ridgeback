@@ -2,12 +2,12 @@ package game.main;
 
 import javax.swing.JPanel;
 
-import game.UI.UI;
 import game.data.GameState;
 import game.entity.Entity;
 import game.entity.Player;
 import game.io.KeyHandler;
 import game.io.Sound;
+import game.ui.UI;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -32,6 +32,8 @@ public class GamePanel extends JPanel implements Runnable {
 	public int gameState = GameState.START;
 
 	public int score = 0;
+	
+	public boolean musicStatus = false;
 
 	final int maxTickPerSec = 20;
 	public int tick = 0;
@@ -40,10 +42,11 @@ public class GamePanel extends JPanel implements Runnable {
 
 	// SYSTEM
 	KeyHandler keyH = new KeyHandler();
-	public Sound sound = new Sound();
+	Sound sound = new Sound();
+	Sound music = new Sound();
 	public CollisionChecker cChecker = new CollisionChecker(this);
 
-	UI ui = new UI(this);
+	UI ui = new UI(this,keyH);
 
 	Thread gameThread;
 
@@ -53,16 +56,13 @@ public class GamePanel extends JPanel implements Runnable {
 	public GamePanel() {
 
 		this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-		this.setBackground(Color.white);
+		this.setBackground(Color.DARK_GRAY);
 		this.setDoubleBuffered(true);
 
 		this.addKeyListener(keyH);
 		setFocusable(true);
 
-		// hp = new collectEn();
 		setLayout(null);
-
-		sound.backgroundMusic("/sound/bgs");
 	}
 
 	public void startGameThread() {
@@ -132,12 +132,34 @@ public class GamePanel extends JPanel implements Runnable {
 
 		g2.setColor(Color.WHITE);
 		g2.setColor(Color.DARK_GRAY);
-		
+
 		ui.draw(g2);
-		
 
 		g2.dispose();
 
+	}
+
+	public void playBackgroundMusic(Integer number) {
+		if(!musicStatus) {
+			music.setUp(number);
+			music.play();
+			music.loop();
+			musicStatus = !musicStatus;
+		}
+	
+	}
+
+	public void stopBackgroundMusic() {
+		if(musicStatus) {
+			music.stop();
+			musicStatus = !musicStatus;
+		}
+	}
+
+	public void playSoundEffect(Integer number) {
+
+		sound.setUp(number);
+		sound.play();
 	}
 
 }

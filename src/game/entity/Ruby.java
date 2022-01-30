@@ -11,7 +11,7 @@ public class Ruby extends Entity {
 		this.speed = speed;
 
 		obj = AssetManager.setImage("/image/ruby");
-		sound = "/sound/Bark";
+		sound = 0;
 		
 	}
 
@@ -19,8 +19,9 @@ public class Ruby extends Entity {
 
 		y += speed;
 
-		if (y > gp.screenHeight) {
+		if (y > GamePanel.screenHeight) {
 			gp.player.life--;
+			gp.playSoundEffect(2);
 		}
 
 	}

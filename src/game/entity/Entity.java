@@ -21,7 +21,9 @@ public class Entity {
 	public ArrayList<BufferedImage> spriteSheet = new ArrayList<BufferedImage>();
 	public BufferedImage left1, left2, right1, right2, obj;
 	public String direction = "defualt";
-	public String sound = "sound";
+	
+	// SOUND
+	public Integer sound = 999;
 
 	// SPRITE ANIMATE
 	public int spriteCounter = 0;
@@ -50,19 +52,23 @@ public class Entity {
 
 			switch (direction) {
 			case "left":
-				if (spriteNum == 1) {
+				switch (spriteNum) {
+				case 1:
 					image = left1;
-				}
-				if (spriteNum == 2) {
+					break;
+				case 2:
 					image = left2;
+					break;
 				}
 				break;
 			case "right":
-				if (spriteNum == 1) {
+				switch (spriteNum) {
+				case 1:
 					image = right1;
-				}
-				if (spriteNum == 2) {
+					break;
+				case 2:
 					image = right2;
+					break;
 				}
 
 			default:
@@ -83,7 +89,9 @@ public class Entity {
 	}
 
 	public void soundEffect() {
-		gp.sound.effect(this.sound);
+		if (sound != 999) {
+			gp.playSoundEffect(sound);
+		}
 	}
 
 }

@@ -1,8 +1,5 @@
 package game.entity;
 
-import java.io.IOException;
-import javax.imageio.ImageIO;
-
 import game.io.AssetManager;
 import game.main.GamePanel;
 
@@ -16,6 +13,7 @@ public class Heart extends Entity{
 		this.x = x;
 		this.speed = speed;
 		obj = AssetManager.setImage("/image/heart");
+		sound = 3;
 	}
 	
 	public void update() {
